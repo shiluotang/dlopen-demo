@@ -4,6 +4,10 @@
 #include <stdexcept>
 #include <vector>
 
+#if defined( __MINGW32__) || defined(__CYGWIN__)
+#   include <windows.h>
+#endif
+
 #include <jni.h>
 
 #include "../src/dynamic_library.hpp"
@@ -79,7 +83,12 @@ int main(int argc, char* argv[]) try {
     }
 
     cout << "JAVA_HOME = " << envvars::get("JAVA_HOME") << endl;
+#if defined(__MINGW32__) || defined(__CYGWIN__)
+    std::string path = envvars::get("JAVA_HOME") + "/jre/bin/server/jvm.dll";
+#elif defined(__APPLE__)
     std::string path = envvars::get("JAVA_HOME") + "/jre/lib/server/libjvm.dylib";
+#endif
+
     cout << "JVM library = " << path << endl;
 
     JNI jni(path);

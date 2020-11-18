@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4
 
-AM_CPPFLAGS = -Wall -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+AM_CPPFLAGS = -Wall -I"$(JAVA_HOME)/include" -I"$(JAVA_HOME)/include/win32"
 AM_CFLAGS 	=
 AM_CXXFLAGS =
 AM_LDFLAGS 	= -ldl
